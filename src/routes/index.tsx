@@ -53,11 +53,14 @@ function HomePage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="container z-10 px-6 text-center"
+          className="container z-10 px-6 text-center max-w-none"
         >
-          <p className="mb-4 text-xs font-bold tracking-[0.2em] text-primary uppercase">Barbearia Premium em Copacabana</p>
-          <h2 className="mb-6 text-6xl md:text-8xl font-bold tracking-tighter">Seu estilo começa nos detalhes.</h2>
-          <p className="mx-auto mb-10 max-w-lg text-lg text-muted-foreground">"Mais do que um corte. Uma experiência pensada para quem valoriza presença, estilo e cuidado."</p>
+          <h2 className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter whitespace-nowrap">
+            Seu estilo começa nos detalhes.
+          </h2>
+          <p className="mx-auto mb-10 max-w-4xl text-lg md:text-xl text-muted-foreground leading-relaxed">
+            "Mais do que um corte. Uma experiência pensada para quem valoriza presença, estilo e cuidado."
+          </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
             <a
               href="https://wa.me/5521970378593?text=Olá! Gostaria de agendar um horário na Barbearia Sá Ferreira."
