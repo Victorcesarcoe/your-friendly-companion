@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 import { Star, MapPin, Phone, Clock, CheckCircle, Camera, Scissors, Sparkles, User, Coffee, Wifi, X, ChevronLeft, ChevronRight, Send, Calendar, Mail, MessageSquare } from "lucide-react";
 import { toast } from "sonner";
 import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
