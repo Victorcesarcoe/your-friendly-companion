@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Star, MapPin, Phone, Clock, CheckCircle } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -9,7 +8,7 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground font-sans">
       {/* Navbar */}
       <nav className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md">
         <div className="container mx-auto flex h-20 items-center justify-between px-6">
@@ -36,9 +35,9 @@ function HomePage() {
           <img
             src="https://images.unsplash.com/photo-1599351431202-180f0b4b268d?q=80&w=2000&auto=format&fit=crop"
             alt="Barbearia Premium"
-            className="h-full w-full object-cover opacity-60"
+            className="h-full w-full object-cover opacity-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background to-background/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/20" />
         </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -46,13 +45,13 @@ function HomePage() {
           transition={{ duration: 0.8 }}
           className="container z-10 px-6 text-center"
         >
-          <p className="mb-4 text-xs font-bold tracking-[0.2em] text-primary">BARBEARIA PREMIUM EM COPACABANA</p>
+          <p className="mb-4 text-xs font-bold tracking-[0.2em] text-primary uppercase">Barbearia Premium em Copacabana</p>
           <h2 className="mb-6 text-6xl md:text-8xl font-bold tracking-tighter">Seu estilo começa nos detalhes.</h2>
           <p className="mx-auto mb-10 max-w-lg text-lg text-muted-foreground">"Mais do que um corte. Uma experiência pensada para quem valoriza presença, estilo e cuidado."</p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
             <a
               href="https://wa.me/5521970378593?text=Olá! Gostaria de agendar um horário na Barbearia Sá Ferreira."
-              className="rounded-full bg-primary px-10 py-4 font-bold text-primary-foreground hover:bg-primary/90 transition-all"
+              className="rounded-full bg-primary px-10 py-4 font-bold text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105"
             >
               AGENDAR HORÁRIO
             </a>
