@@ -124,7 +124,11 @@ function HomePage() {
       </nav>
 
       {/* Hero */}
-      <section id="início" className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+      <section 
+        id="início" 
+        ref={heroRef}
+        className="relative h-screen w-full flex items-center justify-center overflow-hidden perspective-1000"
+      >
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
@@ -144,26 +148,46 @@ function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/20" />
         </div>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="container z-10 px-6 text-center max-w-none"
+          style={{ opacity, scale, y }}
+          initial={{ opacity: 0, y: 100, rotateX: 25, z: -100 }}
+          animate={{ opacity: 1, y: 0, rotateX: 0, z: 0 }}
+          transition={{ 
+            duration: 1.2, 
+            ease: [0.22, 1, 0.36, 1],
+            opacity: { duration: 0.8 }
+          }}
+          className="container z-10 px-6 text-center max-w-none transform-gpu"
         >
-          <h2 className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter">
+          <motion.h2 
+            className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-3d text-foreground"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+          >
             Seu estilo começa nos detalhes.
-          </h2>
-          <p className="mx-auto mb-10 max-w-4xl text-lg md:text-xl text-muted-foreground leading-relaxed">
+          </motion.h2>
+          <motion.p 
+            className="mx-auto mb-10 max-w-4xl text-lg md:text-xl text-muted-foreground leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
             "Mais do que um corte. Uma experiência pensada para quem valoriza presença, estilo e cuidado."
-          </p>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+          </motion.p>
+          <motion.div 
+            className="flex flex-col md:flex-row items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+          >
             <a
               href="https://wa.me/5521970378593?text=Olá! Gostaria de agendar um horário na Barbearia Sá Ferreira."
               onClick={() => trackConversion("Hero")}
-              className="rounded-full bg-primary px-10 py-4 font-bold text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105"
+              className="rounded-full bg-primary px-10 py-4 font-bold text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105 shadow-lg shadow-primary/20"
             >
               AGENDAR HORÁRIO
             </a>
-          </div>
+          </motion.div>
         </motion.div>
       </section>
 
