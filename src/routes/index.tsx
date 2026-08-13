@@ -264,7 +264,7 @@ function HomePage() {
               }
             }}
           >
-            <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Mais que uma barbearia. Seu momento.</h3>
+            <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-3d text-3d-hover cursor-default">Mais que uma barbearia. Seu momento.</h3>
             <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
               A Barbearia Sá Ferreira foi pensada para homens que não abrem mão de estilo, cuidado e uma experiência diferenciada.
             </p>
