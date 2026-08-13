@@ -41,6 +41,19 @@
   --font-serif: "Playfair Display", serif;
 }
 
+@utility text-3d {
+  text-shadow: 
+    0 1px 0 oklch(0.75 0.15 75 / 0.8),
+    0 2px 0 oklch(0.75 0.15 75 / 0.6),
+    0 3px 0 oklch(0.75 0.15 75 / 0.4),
+    0 4px 0 oklch(0.75 0.15 75 / 0.2),
+    0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+@utility perspective-1000 {
+  perspective: 1000px;
+}
+
 :root {
   --radius: 0.5rem;
   /* Palette: Black Deep, Graphite, Dark Gray, White, Discrete Gold */
