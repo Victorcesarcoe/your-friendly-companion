@@ -253,6 +253,7 @@ function HomePage() {
           variants={staggerContainer}
           className="grid grid-cols-2 md:grid-cols-3 gap-4"
         >
+          {galleryImages.map((img, i) => (
             <motion.div
               key={i}
               variants={staggerItem}
