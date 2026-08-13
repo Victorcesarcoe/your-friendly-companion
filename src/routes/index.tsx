@@ -443,7 +443,7 @@ function HomePage() {
               viewport={{ once: true, margin: "-100px" }}
               variants={revealVariants}
             >
-              <h3 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Agende seu horário</h3>
+              <h3 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-3d text-3d-hover cursor-default">Agende seu horário</h3>
               <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
                 Pronto para transformar seu visual? Preencha o formulário ou fale conosco diretamente pelo WhatsApp.
               </p>
