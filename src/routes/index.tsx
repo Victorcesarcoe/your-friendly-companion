@@ -16,7 +16,7 @@ function HomePage() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentReview((prev) => (prev + 1) % reviews.length);
+      setCurrentReview((prev) => (prev + 1) % (reviews?.length || 1));
     }, 5000);
     return () => clearInterval(timer);
   }, []);
