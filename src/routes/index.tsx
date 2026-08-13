@@ -12,9 +12,9 @@ function HomePage() {
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+      transition: { duration: 0.8, ease: "easeOut" }
     }
-  };
+  } as const;
 
   const staggerContainer = {
     hidden: { opacity: 0 },
@@ -25,16 +25,16 @@ function HomePage() {
         delayChildren: 0.1,
       },
     },
-  };
+  } as const;
 
   const staggerItem = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: "easeOut" as const },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
-  };
+  } as const;
 
   const services = [
     { title: "Corte Social", price: "R$ 60", icon: <Scissors className="w-6 h-6" />, desc: "Corte clássico e preciso." },
