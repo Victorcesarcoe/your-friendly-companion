@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Star, MapPin, Phone, Clock, CheckCircle } from "lucide-react";
+import { Star, MapPin, Phone, Clock, CheckCircle, Camera, Scissors, Sparkles, User, Coffee, Wifi } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
