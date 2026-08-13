@@ -55,7 +55,7 @@ function HomePage() {
           transition={{ duration: 0.8 }}
           className="container z-10 px-6 text-center max-w-none"
         >
-          <h2 className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter whitespace-nowrap">
+          <h2 className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter">
             Seu estilo começa nos detalhes.
           </h2>
           <p className="mx-auto mb-10 max-w-4xl text-lg md:text-xl text-muted-foreground leading-relaxed">
