@@ -318,23 +318,53 @@ function HomePage() {
             variants={staggerContainer}
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            {reviews.map((review, i) => (
-              <motion.div
-                key={i}
-                variants={staggerItem}
-                className="p-6 rounded-xl border border-border/50 bg-background/50 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex gap-1 text-primary mb-4">
-                    {Array.from({ length: review.rating }).map((_, idx) => (
-                      <Star key={idx} fill="currentColor" size={14} />
+            <div className="relative max-w-4xl mx-auto overflow-hidden px-4 md:px-12">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentReview}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.5 }}
+                  className="p-8 md:p-12 rounded-2xl border border-border/50 bg-background/50 flex flex-col items-center text-center shadow-xl"
+                >
+                  <div className="flex gap-1 text-primary mb-6">
+                    {Array.from({ length: reviews[currentReview].rating }).map((_, idx) => (
+                      <Star key={idx} fill="currentColor" size={24} />
                     ))}
                   </div>
-                  <p className="text-muted-foreground italic mb-6 leading-relaxed">"{review.text}"</p>
-                </div>
-                <p className="font-bold text-sm">— {review.name}</p>
-              </motion.div>
-            ))}
+                  <p className="text-xl md:text-2xl text-muted-foreground italic mb-8 leading-relaxed">
+                    "{reviews[currentReview].text}"
+                  </p>
+                  <p className="font-bold text-lg text-primary">— {reviews[currentReview].name}</p>
+                </motion.div>
+              </AnimatePresence>
+              
+              <div className="flex justify-center gap-4 mt-8">
+                <button 
+                  onClick={() => setCurrentReview((prev) => (prev - 1 + reviews.length) % reviews.length)}
+                  className="w-12 h-12 rounded-full border border-border/50 flex items-center justify-center hover:border-primary hover:text-primary transition-all"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+                <button 
+                  onClick={() => setCurrentReview((prev) => (prev + 1) % reviews.length)}
+                  className="w-12 h-12 rounded-full border border-border/50 flex items-center justify-center hover:border-primary hover:text-primary transition-all"
+                >
+                  <ChevronRight size={24} />
+                </button>
+              </div>
+
+              <div className="flex justify-center gap-2 mt-6">
+                {reviews.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentReview(idx)}
+                    className={`w-2 h-2 rounded-full transition-all ${currentReview === idx ? 'bg-primary w-4' : 'bg-border'}`}
+                  />
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
