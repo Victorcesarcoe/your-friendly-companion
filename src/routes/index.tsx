@@ -12,6 +12,19 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
+  const [currentReview, setCurrentReview] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentReview((prev) => (prev + 1) % reviews.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const trackConversion = (location: string) => {
+    console.log(`[Analytics] Conversão rastreada: Clique no botão de agendamento em ${location}`);
+    // Aqui poderiam ser integrados eventos do GA4, Facebook Pixel, etc.
+  };
 
   const revealVariants = {
     hidden: { opacity: 0, y: 30 },
