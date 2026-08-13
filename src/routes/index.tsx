@@ -369,7 +369,7 @@ function HomePage() {
             variants={revealVariants}
             className="text-center mb-16"
           >
-            <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">O que dizem nossos clientes</h3>
+            <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight text-3d text-3d-hover cursor-default">O que dizem nossos clientes</h3>
             <div className="flex justify-center gap-1 text-primary mb-4">
               {[1, 2, 3, 4, 5].map((i) => <Star key={i} fill="currentColor" size={20} />)}
             </div>
