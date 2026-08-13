@@ -7,6 +7,15 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
+  const revealVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } as const
+    }
+  } as const;
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       {/* Navbar */}
@@ -73,7 +82,13 @@ function HomePage() {
       </section>
 
       {/* Confiança */}
-      <section className="py-12 border-y border-border/50 bg-secondary/30">
+      <motion.section 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={revealVariants}
+        className="py-12 border-y border-border/50 bg-secondary/30"
+      >
         <div className="container mx-auto px-6 text-center">
           <div className="flex flex-col items-center justify-center gap-2">
             <div className="flex gap-1 text-primary">
@@ -83,15 +98,32 @@ function HomePage() {
             <p className="text-sm text-muted-foreground italic">"Experiência, precisão e estilo em cada atendimento."</p>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Sobre */}
       <section id="sobre" className="py-24 container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div className="rounded-2xl overflow-hidden shadow-2xl">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={revealVariants}
+            className="rounded-2xl overflow-hidden shadow-2xl"
+          >
             <img src="https://images.unsplash.com/photo-1503951914875-452162b09f6f?q=80&w=1000&auto=format&fit=crop" alt="Interior Barbearia" className="w-full h-full object-cover" />
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              hidden: revealVariants.hidden,
+              visible: { 
+                ...revealVariants.visible, 
+                transition: { ...revealVariants.visible.transition, delay: 0.2 } 
+              }
+            } as const}
+          >
             <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Mais que uma barbearia. Seu momento.</h3>
             <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
               A Barbearia Sá Ferreira foi pensada para homens que não abrem mão de estilo, cuidado e uma experiência diferenciada.
@@ -99,8 +131,8 @@ function HomePage() {
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
               Em um ambiente moderno e acolhedor, cada atendimento é realizado com atenção aos detalhes, respeitando o estilo e a personalidade de cada cliente.
             </p>
-            <a href="#" className="inline-block border border-primary px-8 py-3 text-primary hover:bg-primary hover:text-primary-foreground transition-all">AGENDAR MEU HORÁRIO</a>
-          </div>
+            <a href="https://wa.me/5521970378593?text=Olá! Gostaria de agendar um horário." className="inline-block border border-primary px-8 py-3 text-primary hover:bg-primary hover:text-primary-foreground transition-all">AGENDAR MEU HORÁRIO</a>
+          </motion.div>
         </div>
       </section>
 
