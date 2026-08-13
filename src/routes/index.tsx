@@ -173,10 +173,23 @@ function HomePage() {
             ease: [0.22, 1, 0.36, 1],
             opacity: { duration: 0.8 }
           }}
-          className="container z-10 px-6 text-center max-w-none transform-gpu"
+          onMouseMove={handleMouseMove}
+          className="container z-10 px-6 text-center max-w-none transform-gpu relative"
         >
+          {particles.map((p) => (
+            <div
+              key={p.id}
+              className="particle"
+              style={{
+                left: p.x,
+                top: p.y,
+                width: p.size,
+                height: p.size,
+              }}
+            />
+          ))}
           <motion.h2 
-            className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-3d text-foreground"
+            className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-3d text-foreground cursor-default text-3d-hover"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
