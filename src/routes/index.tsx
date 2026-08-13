@@ -253,12 +253,15 @@ function HomePage() {
           variants={staggerContainer}
           className="grid grid-cols-2 md:grid-cols-3 gap-4"
         >
-          {galleryImages.map((img, i) => (
             <motion.div
               key={i}
               variants={staggerItem}
-              className="aspect-square overflow-hidden rounded-lg group"
+              className="aspect-square overflow-hidden rounded-lg group cursor-pointer relative"
+              onClick={() => setSelectedImage(img)}
             >
+              <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-center justify-center">
+                <Camera className="text-white w-8 h-8" />
+              </div>
               <img 
                 src={img} 
                 alt={`Trabalho ${i + 1}`} 
