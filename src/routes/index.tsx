@@ -9,6 +9,9 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
+
   const revealVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: { 
@@ -46,13 +49,26 @@ function HomePage() {
   ];
 
   const galleryImages = [
-    "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1621605815841-aa8b06888ad4?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1593702295094-272cddf93f63?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1503951914875-452162b09f6f?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1532710093739-9470acff878f?q=80&w=600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1622286330918-0952179a65c1?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1621605815841-aa8b06888ad4?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1593702295094-272cddf93f63?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1503951914875-452162b09f6f?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1532710093739-9470acff878f?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1622286330918-0952179a65c1?q=80&w=800&auto=format&fit=crop",
   ];
+
+  const reviews = [
+    { name: "Carlos Andrade", text: "Ambiente impecável e atendimento de primeira. O melhor corte de Copacabana, sem dúvida.", rating: 5 },
+    { name: "Roberto Silva", text: "A barba terapia é sensacional. Relaxamento total e resultado perfeito.", rating: 5 },
+    { name: "Felipe Mendes", text: "Profissionais extremamente qualificados. O combo premium vale cada centavo.", rating: 5 },
+    { name: "João Pedro", text: "Estilo e cuidado nos mínimos detalhes. Recomendo muito!", rating: 4 },
+  ];
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success("Mensagem enviada com sucesso! Entraremos em contato em breve.");
+    setFormData({ name: "", email: "", phone: "", message: "" });
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
