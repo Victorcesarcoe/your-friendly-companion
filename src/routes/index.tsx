@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Star, MapPin, Phone, Clock, CheckCircle } from "lucide-react";
+import { Star, MapPin, Phone, Clock, CheckCircle, Camera, Scissors, Sparkles, User, Coffee, Wifi } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -12,9 +12,45 @@ function HomePage() {
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } as const
+      transition: { duration: 0.8, ease: "easeOut" }
     }
   } as const;
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1,
+      },
+    },
+  } as const;
+
+  const staggerItem = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  } as const;
+
+  const services = [
+    { title: "Corte Social", price: "R$ 60", icon: <Scissors className="w-6 h-6" />, desc: "Corte clássico e preciso." },
+    { title: "Barba Terapia", price: "R$ 50", icon: <Sparkles className="w-6 h-6" />, desc: "Toalha quente e óleos essenciais." },
+    { title: "Combo Premium", price: "R$ 100", icon: <User className="w-6 h-6" />, desc: "Corte e barba com tratamento completo." },
+    { title: "Pigmentação", price: "R$ 40", icon: <CheckCircle className="w-6 h-6" />, desc: "Correção e definição de barba." },
+  ];
+
+  const galleryImages = [
+    "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1621605815841-aa8b06888ad4?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1593702295094-272cddf93f63?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1503951914875-452162b09f6f?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1532710093739-9470acff878f?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1622286330918-0952179a65c1?q=80&w=600&auto=format&fit=crop",
+  ];
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
@@ -120,9 +156,9 @@ function HomePage() {
               hidden: revealVariants.hidden,
               visible: { 
                 ...revealVariants.visible, 
-                transition: { ...revealVariants.visible.transition, delay: 0.2 } 
+                transition: { duration: 0.8, ease: "easeOut", delay: 0.2 } 
               }
-            } as const}
+            }}
           >
             <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Mais que uma barbearia. Seu momento.</h3>
             <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
@@ -133,6 +169,97 @@ function HomePage() {
             </p>
             <a href="https://wa.me/5521970378593?text=Olá! Gostaria de agendar um horário." className="inline-block border border-primary px-8 py-3 text-primary hover:bg-primary hover:text-primary-foreground transition-all">AGENDAR MEU HORÁRIO</a>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Serviços */}
+      <section id="serviços" className="py-24 bg-secondary/20">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={revealVariants}
+            className="text-center mb-16"
+          >
+            <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Nossos Serviços</h3>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Excelência técnica e os melhores produtos para garantir o resultado que você merece.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={staggerContainer}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
+          >
+            {services.map((service, i) => (
+              <motion.div
+                key={i}
+                variants={staggerItem}
+                className="group p-8 border border-border/50 bg-background/50 hover:bg-background transition-all hover:border-primary/50 rounded-xl"
+              >
+                <div className="text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+                  {service.icon}
+                </div>
+                <h4 className="text-xl font-bold mb-2">{service.title}</h4>
+                <p className="text-muted-foreground text-sm mb-4">{service.desc}</p>
+                <p className="text-2xl font-bold text-primary">{service.price}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Galeria */}
+      <section id="galeria" className="py-24 container mx-auto px-6">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={revealVariants}
+          className="text-center mb-16"
+        >
+          <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Galeria</h3>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Confira alguns de nossos trabalhos e o ambiente exclusivo da Sá Ferreira.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="grid grid-cols-2 md:grid-cols-3 gap-4"
+        >
+          {galleryImages.map((img, i) => (
+            <motion.div
+              key={i}
+              variants={staggerItem}
+              className="aspect-square overflow-hidden rounded-lg group"
+            >
+              <img 
+                src={img} 
+                alt={`Trabalho ${i + 1}`} 
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* Comodidades */}
+      <section className="py-12 bg-secondary/10 border-y border-border/30">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-wrap justify-center gap-12 text-muted-foreground">
+            <div className="flex items-center gap-3"><Coffee className="w-5 h-5 text-primary" /> <span>Café Expresso</span></div>
+            <div className="flex items-center gap-3"><Wifi className="w-5 h-5 text-primary" /> <span>Wi-Fi Free</span></div>
+            <div className="flex items-center gap-3"><Clock className="w-5 h-5 text-primary" /> <span>Agendamento Online</span></div>
+            <div className="flex items-center gap-3"><MapPin className="w-5 h-5 text-primary" /> <span>Copacabana</span></div>
+          </div>
         </div>
       </section>
 
