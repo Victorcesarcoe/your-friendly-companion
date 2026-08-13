@@ -32,11 +32,21 @@ function HomePage() {
       {/* Hero */}
       <section id="início" className="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1599351431202-180f0b4b268d?q=80&w=2000&auto=format&fit=crop"
-            alt="Barbearia Premium"
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
             className="h-full w-full object-cover opacity-50"
-          />
+            poster="https://images.unsplash.com/photo-1599351431202-180f0b4b268d?q=80&w=2000&auto=format&fit=crop"
+          >
+            <source src="https://id-preview--ab490044-e292-4711-91ca-a25fa7bfb3bd.lovable.app/api/public/proxy-video?url=https://drive.google.com/uc?export=download&id=1_enG_V-s_3rhfuOWWgBL_ZZs4dttnHaF" type="video/mp4" />
+            <img
+              src="https://images.unsplash.com/photo-1599351431202-180f0b4b268d?q=80&w=2000&auto=format&fit=crop"
+              alt="Barbearia Premium"
+              className="h-full w-full object-cover opacity-50"
+            />
+          </video>
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/20" />
         </div>
         <motion.div
