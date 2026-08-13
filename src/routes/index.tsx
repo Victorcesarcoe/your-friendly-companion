@@ -13,6 +13,7 @@ function HomePage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
   const [currentReview, setCurrentReview] = useState(0);
+  const [particles, setParticles] = useState<{ id: number; x: number; y: number; size: number }[]>([]);
   const heroRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -23,6 +24,22 @@ function HomePage() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
   const y = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (Math.random() > 0.8) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const newParticle = {
+        id: Date.now(),
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+        size: Math.random() * 4 + 2,
+      };
+      setParticles((prev) => [...prev.slice(-20), newParticle]);
+      setTimeout(() => {
+        setParticles((prev) => prev.filter((p) => p.id !== newParticle.id));
+      }, 1000);
+    }
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -156,10 +173,23 @@ function HomePage() {
             ease: [0.22, 1, 0.36, 1],
             opacity: { duration: 0.8 }
           }}
-          className="container z-10 px-6 text-center max-w-none transform-gpu"
+          onMouseMove={handleMouseMove}
+          className="container z-10 px-6 text-center max-w-none transform-gpu relative"
         >
+          {particles.map((p) => (
+            <div
+              key={p.id}
+              className="particle"
+              style={{
+                left: p.x,
+                top: p.y,
+                width: p.size,
+                height: p.size,
+              }}
+            />
+          ))}
           <motion.h2 
-            className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-3d text-foreground"
+            className="mb-6 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-3d text-foreground cursor-default text-3d-hover"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
@@ -234,7 +264,7 @@ function HomePage() {
               }
             }}
           >
-            <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Mais que uma barbearia. Seu momento.</h3>
+            <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-3d text-3d-hover cursor-default">Mais que uma barbearia. Seu momento.</h3>
             <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
               A Barbearia Sá Ferreira foi pensada para homens que não abrem mão de estilo, cuidado e uma experiência diferenciada.
             </p>
@@ -256,7 +286,7 @@ function HomePage() {
             variants={revealVariants}
             className="text-center mb-16"
           >
-            <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Nossos Serviços</h3>
+            <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight text-3d text-3d-hover cursor-default">Nossos Serviços</h3>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Excelência técnica e os melhores produtos para garantir o resultado que você merece.
             </p>
@@ -296,7 +326,7 @@ function HomePage() {
           variants={revealVariants}
           className="text-center mb-16"
         >
-          <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Galeria</h3>
+          <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight text-3d text-3d-hover cursor-default">Galeria</h3>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Confira alguns de nossos trabalhos e o ambiente exclusivo da Sá Ferreira.
           </p>
@@ -339,7 +369,7 @@ function HomePage() {
             variants={revealVariants}
             className="text-center mb-16"
           >
-            <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">O que dizem nossos clientes</h3>
+            <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight text-3d text-3d-hover cursor-default">O que dizem nossos clientes</h3>
             <div className="flex justify-center gap-1 text-primary mb-4">
               {[1, 2, 3, 4, 5].map((i) => <Star key={i} fill="currentColor" size={20} />)}
             </div>
@@ -413,7 +443,7 @@ function HomePage() {
               viewport={{ once: true, margin: "-100px" }}
               variants={revealVariants}
             >
-              <h3 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Agende seu horário</h3>
+              <h3 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-3d text-3d-hover cursor-default">Agende seu horário</h3>
               <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
                 Pronto para transformar seu visual? Preencha o formulário ou fale conosco diretamente pelo WhatsApp.
               </p>
