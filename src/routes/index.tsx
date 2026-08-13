@@ -501,10 +501,7 @@ function HomePage() {
               </p>
               <div className="flex gap-4">
                 <a href="#" className="w-10 h-10 rounded-full bg-background border border-border/50 flex items-center justify-center hover:border-primary transition-colors">
-                  <Instagram size={20} />
-                </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-background border border-border/50 flex items-center justify-center hover:border-primary transition-colors">
-                  <Facebook size={20} />
+                  <MessageSquare size={20} />
                 </a>
                 <a href="#" className="w-10 h-10 rounded-full bg-background border border-border/50 flex items-center justify-center hover:border-primary transition-colors">
                   <Mail size={20} />
