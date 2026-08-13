@@ -172,6 +172,97 @@ function HomePage() {
         </div>
       </section>
 
+      {/* Serviços */}
+      <section id="serviços" className="py-24 bg-secondary/20">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={revealVariants}
+            className="text-center mb-16"
+          >
+            <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Nossos Serviços</h3>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Excelência técnica e os melhores produtos para garantir o resultado que você merece.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={staggerContainer}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
+          >
+            {services.map((service, i) => (
+              <motion.div
+                key={i}
+                variants={staggerItem}
+                className="group p-8 border border-border/50 bg-background/50 hover:bg-background transition-all hover:border-primary/50 rounded-xl"
+              >
+                <div className="text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+                  {service.icon}
+                </div>
+                <h4 className="text-xl font-bold mb-2">{service.title}</h4>
+                <p className="text-muted-foreground text-sm mb-4">{service.desc}</p>
+                <p className="text-2xl font-bold text-primary">{service.price}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Galeria */}
+      <section id="galeria" className="py-24 container mx-auto px-6">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={revealVariants}
+          className="text-center mb-16"
+        >
+          <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Galeria</h3>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Confira alguns de nossos trabalhos e o ambiente exclusivo da Sá Ferreira.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="grid grid-cols-2 md:grid-cols-3 gap-4"
+        >
+          {galleryImages.map((img, i) => (
+            <motion.div
+              key={i}
+              variants={staggerItem}
+              className="aspect-square overflow-hidden rounded-lg group"
+            >
+              <img 
+                src={img} 
+                alt={`Trabalho ${i + 1}`} 
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* Comodidades */}
+      <section className="py-12 bg-secondary/10 border-y border-border/30">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-wrap justify-center gap-12 text-muted-foreground">
+            <div className="flex items-center gap-3"><Coffee className="w-5 h-5 text-primary" /> <span>Café Expresso</span></div>
+            <div className="flex items-center gap-3"><Wifi className="w-5 h-5 text-primary" /> <span>Wi-Fi Free</span></div>
+            <div className="flex items-center gap-3"><Clock className="w-5 h-5 text-primary" /> <span>Agendamento Online</span></div>
+            <div className="flex items-center gap-3"><MapPin className="w-5 h-5 text-primary" /> <span>Copacabana</span></div>
+          </div>
+        </div>
+      </section>
+
       {/* WhatsApp Button */}
       <a
         href="https://wa.me/5521970378593?text=Olá! Gostaria de agendar um horário na Barbearia Sá Ferreira."
