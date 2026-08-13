@@ -105,6 +105,7 @@ function HomePage() {
           </div>
           <a
             href="https://wa.me/5521970378593?text=Olá! Gostaria de agendar um horário na Barbearia Sá Ferreira."
+            onClick={() => trackConversion("Navbar")}
             className="rounded-full bg-primary px-6 py-2 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-all"
           >
             AGENDAR
