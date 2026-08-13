@@ -148,6 +148,7 @@ function HomePage() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
             <a
               href="https://wa.me/5521970378593?text=Olá! Gostaria de agendar um horário na Barbearia Sá Ferreira."
+              onClick={() => trackConversion("Hero")}
               className="rounded-full bg-primary px-10 py-4 font-bold text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105"
             >
               AGENDAR HORÁRIO
