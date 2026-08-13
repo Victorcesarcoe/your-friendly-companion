@@ -123,7 +123,7 @@ function HomePage() {
             className="h-full w-full object-cover opacity-50"
             poster="https://images.unsplash.com/photo-1599351431202-180f0b4b268d?q=80&w=2000&auto=format&fit=crop"
           >
-            <source src="https://id-preview--ab490044-e292-4711-91ca-a25fa7bfb3bd.lovable.app/api/public/proxy-video?url=https://drive.google.com/uc?export=download&id=1_enG_V-s_3rhfuOWWgBL_ZZs4dttnHaF" type="video/mp4" />
+            <source src={heroVideoAsset.url} type="video/mp4" />
             <img
               src="https://images.unsplash.com/photo-1599351431202-180f0b4b268d?q=80&w=2000&auto=format&fit=crop"
               alt="Barbearia Premium"
