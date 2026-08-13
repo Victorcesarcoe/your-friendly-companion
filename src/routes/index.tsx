@@ -477,6 +477,71 @@ function HomePage() {
         )}
       </AnimatePresence>
 
+      {/* Mapa */}
+      <section className="h-[400px] w-full grayscale hover:grayscale-0 transition-all duration-700">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3673.235552945781!2d-43.1931327!3d-22.9774163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9bd5400938363b%3A0xe5426173a11585!2sR.%20S%C3%A1%20Ferreira%2C%20Copacabana%2C%20Rio%20de%20Janeiro%20-%20RJ!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
+          width="100%" 
+          height="100%" 
+          style={{ border: 0 }} 
+          allowFullScreen 
+          loading="lazy" 
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-secondary/30 pt-16 pb-8 border-t border-border/50">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            <div className="col-span-1 md:col-span-2">
+              <h4 className="text-2xl font-bold tracking-tighter text-primary mb-6">SÁ FERREIRA</h4>
+              <p className="text-muted-foreground mb-6 max-w-sm">
+                Excelência em barbearia clássica e moderna no coração de Copacabana. Sua melhor experiência de cuidado masculino.
+              </p>
+              <div className="flex gap-4">
+                <a href="#" className="w-10 h-10 rounded-full bg-background border border-border/50 flex items-center justify-center hover:border-primary transition-colors">
+                  <Instagram size={20} />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-background border border-border/50 flex items-center justify-center hover:border-primary transition-colors">
+                  <Facebook size={20} />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-background border border-border/50 flex items-center justify-center hover:border-primary transition-colors">
+                  <Mail size={20} />
+                </a>
+              </div>
+            </div>
+            
+            <div>
+              <h5 className="font-bold mb-6">Links Rápidos</h5>
+              <ul className="space-y-4 text-sm text-muted-foreground">
+                <li><a href="#início" className="hover:text-primary transition-colors">Início</a></li>
+                <li><a href="#sobre" className="hover:text-primary transition-colors">Sobre Nós</a></li>
+                <li><a href="#serviços" className="hover:text-primary transition-colors">Serviços</a></li>
+                <li><a href="#galeria" className="hover:text-primary transition-colors">Galeria</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h5 className="font-bold mb-6">Contato</h5>
+              <ul className="space-y-4 text-sm text-muted-foreground">
+                <li className="flex gap-3"><MapPin size={16} className="text-primary shrink-0" /> Rua Sá Ferreira, Copacabana</li>
+                <li className="flex gap-3"><Phone size={16} className="text-primary shrink-0" /> (21) 97037-8593</li>
+                <li className="flex gap-3"><Clock size={16} className="text-primary shrink-0" /> Seg - Sáb, 09h às 20h</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
+            <p>© 2026 Barbearia Sá Ferreira. Todos os direitos reservados.</p>
+            <div className="flex gap-6">
+              <a href="#" className="hover:text-primary">Termos de Uso</a>
+              <a href="#" className="hover:text-primary">Privacidade</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
       {/* WhatsApp Button */}
       <a
         href="https://wa.me/5521970378593?text=Olá! Gostaria de agendar um horário na Barbearia Sá Ferreira."
