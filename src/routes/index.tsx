@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Star, MapPin, Phone, Clock, CheckCircle, Camera, Scissors, Sparkles, User, Coffee, Wifi, X, ChevronLeft, ChevronRight, Send, Calendar, Mail, MessageSquare } from "lucide-react";
 import { toast } from "sonner";
+import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -11,6 +12,19 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
+  const [currentReview, setCurrentReview] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentReview((prev) => (prev + 1) % (reviews?.length || 1));
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const trackConversion = (location: string) => {
+    console.log(`[Analytics] Conversão rastreada: Clique no botão de agendamento em ${location}`);
+    // Aqui poderiam ser integrados eventos do GA4, Facebook Pixel, etc.
+  };
 
   const revealVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -91,6 +105,7 @@ function HomePage() {
           </div>
           <a
             href="https://wa.me/5521970378593?text=Olá! Gostaria de agendar um horário na Barbearia Sá Ferreira."
+            onClick={() => trackConversion("Navbar")}
             className="rounded-full bg-primary px-6 py-2 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-all"
           >
             AGENDAR
@@ -109,7 +124,7 @@ function HomePage() {
             className="h-full w-full object-cover opacity-50"
             poster="https://images.unsplash.com/photo-1599351431202-180f0b4b268d?q=80&w=2000&auto=format&fit=crop"
           >
-            <source src="https://id-preview--ab490044-e292-4711-91ca-a25fa7bfb3bd.lovable.app/api/public/proxy-video?url=https://drive.google.com/uc?export=download&id=1_enG_V-s_3rhfuOWWgBL_ZZs4dttnHaF" type="video/mp4" />
+            <source src={heroVideoAsset.url} type="video/mp4" />
             <img
               src="https://images.unsplash.com/photo-1599351431202-180f0b4b268d?q=80&w=2000&auto=format&fit=crop"
               alt="Barbearia Premium"
@@ -133,6 +148,7 @@ function HomePage() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-4">
             <a
               href="https://wa.me/5521970378593?text=Olá! Gostaria de agendar um horário na Barbearia Sá Ferreira."
+              onClick={() => trackConversion("Hero")}
               className="rounded-full bg-primary px-10 py-4 font-bold text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105"
             >
               AGENDAR HORÁRIO
@@ -302,23 +318,53 @@ function HomePage() {
             variants={staggerContainer}
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            {reviews.map((review, i) => (
-              <motion.div
-                key={i}
-                variants={staggerItem}
-                className="p-6 rounded-xl border border-border/50 bg-background/50 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex gap-1 text-primary mb-4">
-                    {Array.from({ length: review.rating }).map((_, idx) => (
-                      <Star key={idx} fill="currentColor" size={14} />
+            <div className="relative max-w-4xl mx-auto overflow-hidden px-4 md:px-12">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentReview}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.5 }}
+                  className="p-8 md:p-12 rounded-2xl border border-border/50 bg-background/50 flex flex-col items-center text-center shadow-xl"
+                >
+                  <div className="flex gap-1 text-primary mb-6">
+                    {Array.from({ length: reviews[currentReview]?.rating || 0 }).map((_, idx) => (
+                      <Star key={idx} fill="currentColor" size={24} />
                     ))}
                   </div>
-                  <p className="text-muted-foreground italic mb-6 leading-relaxed">"{review.text}"</p>
-                </div>
-                <p className="font-bold text-sm">— {review.name}</p>
-              </motion.div>
-            ))}
+                  <p className="text-xl md:text-2xl text-muted-foreground italic mb-8 leading-relaxed">
+                    "{reviews[currentReview]?.text || ""}"
+                  </p>
+                  <p className="font-bold text-lg text-primary">— {reviews[currentReview]?.name || ""}</p>
+                </motion.div>
+              </AnimatePresence>
+              
+              <div className="flex justify-center gap-4 mt-8">
+                <button 
+                  onClick={() => setCurrentReview((prev) => (prev - 1 + reviews.length) % reviews.length)}
+                  className="w-12 h-12 rounded-full border border-border/50 flex items-center justify-center hover:border-primary hover:text-primary transition-all"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+                <button 
+                  onClick={() => setCurrentReview((prev) => (prev + 1) % reviews.length)}
+                  className="w-12 h-12 rounded-full border border-border/50 flex items-center justify-center hover:border-primary hover:text-primary transition-all"
+                >
+                  <ChevronRight size={24} />
+                </button>
+              </div>
+
+              <div className="flex justify-center gap-2 mt-6">
+                {reviews.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentReview(idx)}
+                    className={`w-2 h-2 rounded-full transition-all ${currentReview === idx ? 'bg-primary w-4' : 'bg-border'}`}
+                  />
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -512,10 +558,10 @@ function HomePage() {
             <div>
               <h5 className="font-bold mb-6">Links Rápidos</h5>
               <ul className="space-y-4 text-sm text-muted-foreground">
-                <li><a href="#início" className="hover:text-primary transition-colors">Início</a></li>
-                <li><a href="#sobre" className="hover:text-primary transition-colors">Sobre Nós</a></li>
-                <li><a href="#serviços" className="hover:text-primary transition-colors">Serviços</a></li>
-                <li><a href="#galeria" className="hover:text-primary transition-colors">Galeria</a></li>
+                <li><a href="#início" className="group flex items-center gap-2 hover:text-primary transition-all duration-300"><span className="w-0 group-hover:w-4 h-[1px] bg-primary transition-all"></span> Início</a></li>
+                <li><a href="#sobre" className="group flex items-center gap-2 hover:text-primary transition-all duration-300"><span className="w-0 group-hover:w-4 h-[1px] bg-primary transition-all"></span> Sobre Nós</a></li>
+                <li><a href="#serviços" className="group flex items-center gap-2 hover:text-primary transition-all duration-300"><span className="w-0 group-hover:w-4 h-[1px] bg-primary transition-all"></span> Serviços</a></li>
+                <li><a href="#galeria" className="group flex items-center gap-2 hover:text-primary transition-all duration-300"><span className="w-0 group-hover:w-4 h-[1px] bg-primary transition-all"></span> Galeria</a></li>
               </ul>
             </div>
 
@@ -542,7 +588,8 @@ function HomePage() {
       {/* WhatsApp Button */}
       <a
         href="https://wa.me/5521970378593?text=Olá! Gostaria de agendar um horário na Barbearia Sá Ferreira."
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-full bg-[#25D366] px-6 py-4 text-white shadow-xl hover:scale-105 transition-all animate-pulse"
+        onClick={() => trackConversion("Floating WhatsApp")}
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-full bg-[#25D366] px-6 py-4 text-white shadow-xl hover:scale-110 transition-all animate-pulse"
       >
         <span className="hidden md:block font-bold">Agende seu horário</span>
       </a>
