@@ -588,7 +588,8 @@ function HomePage() {
       {/* WhatsApp Button */}
       <a
         href="https://wa.me/5521970378593?text=Olá! Gostaria de agendar um horário na Barbearia Sá Ferreira."
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-full bg-[#25D366] px-6 py-4 text-white shadow-xl hover:scale-105 transition-all animate-pulse"
+        onClick={() => trackConversion("Floating WhatsApp")}
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-full bg-[#25D366] px-6 py-4 text-white shadow-xl hover:scale-110 transition-all animate-pulse"
       >
         <span className="hidden md:block font-bold">Agende seu horário</span>
       </a>
