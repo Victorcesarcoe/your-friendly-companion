@@ -558,10 +558,10 @@ function HomePage() {
             <div>
               <h5 className="font-bold mb-6">Links Rápidos</h5>
               <ul className="space-y-4 text-sm text-muted-foreground">
-                <li><a href="#início" className="hover:text-primary transition-colors">Início</a></li>
-                <li><a href="#sobre" className="hover:text-primary transition-colors">Sobre Nós</a></li>
-                <li><a href="#serviços" className="hover:text-primary transition-colors">Serviços</a></li>
-                <li><a href="#galeria" className="hover:text-primary transition-colors">Galeria</a></li>
+                <li><a href="#início" className="group flex items-center gap-2 hover:text-primary transition-all duration-300"><span className="w-0 group-hover:w-4 h-[1px] bg-primary transition-all"></span> Início</a></li>
+                <li><a href="#sobre" className="group flex items-center gap-2 hover:text-primary transition-all duration-300"><span className="w-0 group-hover:w-4 h-[1px] bg-primary transition-all"></span> Sobre Nós</a></li>
+                <li><a href="#serviços" className="group flex items-center gap-2 hover:text-primary transition-all duration-300"><span className="w-0 group-hover:w-4 h-[1px] bg-primary transition-all"></span> Serviços</a></li>
+                <li><a href="#galeria" className="group flex items-center gap-2 hover:text-primary transition-all duration-300"><span className="w-0 group-hover:w-4 h-[1px] bg-primary transition-all"></span> Galeria</a></li>
               </ul>
             </div>
 
