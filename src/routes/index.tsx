@@ -13,6 +13,7 @@ function HomePage() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
   const [currentReview, setCurrentReview] = useState(0);
+  const [particles, setParticles] = useState<{ id: number; x: number; y: number; size: number }[]>([]);
   const heroRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -23,6 +24,22 @@ function HomePage() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
   const y = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (Math.random() > 0.8) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const newParticle = {
+        id: Date.now(),
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+        size: Math.random() * 4 + 2,
+      };
+      setParticles((prev) => [...prev.slice(-20), newParticle]);
+      setTimeout(() => {
+        setParticles((prev) => prev.filter((p) => p.id !== newParticle.id));
+      }, 1000);
+    }
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
