@@ -273,6 +273,161 @@ function HomePage() {
         </motion.div>
       </section>
 
+      {/* Avaliações */}
+      <section id="avaliações" className="py-24 bg-secondary/10">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={revealVariants}
+            className="text-center mb-16"
+          >
+            <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">O que dizem nossos clientes</h3>
+            <div className="flex justify-center gap-1 text-primary mb-4">
+              {[1, 2, 3, 4, 5].map((i) => <Star key={i} fill="currentColor" size={20} />)}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {reviews.map((review, i) => (
+              <motion.div
+                key={i}
+                variants={staggerItem}
+                className="p-6 rounded-xl border border-border/50 bg-background/50 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex gap-1 text-primary mb-4">
+                    {Array.from({ length: review.rating }).map((_, idx) => (
+                      <Star key={idx} fill="currentColor" size={14} />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground italic mb-6 leading-relaxed">"{review.text}"</p>
+                </div>
+                <p className="font-bold text-sm">— {review.name}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Agendamento & Contato */}
+      <section id="contato" className="py-24">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={revealVariants}
+            >
+              <h3 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Agende seu horário</h3>
+              <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+                Pronto para transformar seu visual? Preencha o formulário ou fale conosco diretamente pelo WhatsApp.
+              </p>
+              
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                    <MapPin size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold">Endereço</h4>
+                    <p className="text-muted-foreground">Rua Sá Ferreira, Copacabana - Rio de Janeiro</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                    <Clock size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold">Horário</h4>
+                    <p className="text-muted-foreground">Seg - Sex: 09h às 20h | Sáb: 09h às 18h</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                    <Phone size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold">WhatsApp</h4>
+                    <p className="text-muted-foreground">(21) 97037-8593</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={revealVariants}
+              className="p-8 rounded-2xl bg-secondary/30 border border-border/50"
+            >
+              <form onSubmit={handleFormSubmit} className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium">Nome</label>
+                    <input 
+                      type="text" 
+                      required
+                      placeholder="Seu nome"
+                      className="w-full bg-background border border-border/50 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium">WhatsApp</label>
+                    <input 
+                      type="tel" 
+                      required
+                      placeholder="(21) 00000-0000"
+                      className="w-full bg-background border border-border/50 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Email</label>
+                  <input 
+                    type="email" 
+                    required
+                    placeholder="seu@email.com"
+                    className="w-full bg-background border border-border/50 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Qual serviço deseja?</label>
+                  <textarea 
+                    rows={4}
+                    placeholder="Descreva o serviço ou sua dúvida..."
+                    className="w-full bg-background border border-border/50 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors resize-none"
+                    value={formData.message}
+                    onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  ></textarea>
+                </div>
+                <button 
+                  type="submit"
+                  className="w-full bg-primary text-primary-foreground font-bold py-4 rounded-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2"
+                >
+                  <Send size={20} /> ENVIAR MENSAGEM
+                </button>
+              </form>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Comodidades */}
       <section className="py-12 bg-secondary/10 border-y border-border/30">
         <div className="container mx-auto px-6">
@@ -284,6 +439,37 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-background/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-12"
+            onClick={() => setSelectedImage(null)}
+          >
+            <motion.button
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="absolute top-6 right-6 text-white bg-primary/20 hover:bg-primary/40 p-2 rounded-full transition-colors z-[110]"
+              onClick={() => setSelectedImage(null)}
+            >
+              <X size={32} />
+            </motion.button>
+            <motion.img
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              src={selectedImage}
+              alt="Preview ampliado"
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* WhatsApp Button */}
       <a
