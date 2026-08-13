@@ -12,9 +12,9 @@ function HomePage() {
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" }
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } as const
     }
-  };
+  } as const;
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
