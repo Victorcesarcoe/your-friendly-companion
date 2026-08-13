@@ -14,7 +14,43 @@ function HomePage() {
       y: 0,
       transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } as const
     }
-  } as const;
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const staggerItem = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  const services = [
+    { title: "Corte Social", price: "R$ 60", icon: <Scissors className="w-6 h-6" />, desc: "Corte clássico e preciso." },
+    { title: "Barba Terapia", price: "R$ 50", icon: <Sparkles className="w-6 h-6" />, desc: "Toalha quente e óleos essenciais." },
+    { title: "Combo Premium", price: "R$ 100", icon: <User className="w-6 h-6" />, desc: "Corte e barba com tratamento completo." },
+    { title: "Pigmentação", price: "R$ 40", icon: <CheckCircle className="w-6 h-6" />, desc: "Correção e definição de barba." },
+  ];
+
+  const galleryImages = [
+    "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1621605815841-aa8b06888ad4?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1593702295094-272cddf93f63?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1503951914875-452162b09f6f?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1532710093739-9470acff878f?q=80&w=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1622286330918-0952179a65c1?q=80&w=600&auto=format&fit=crop",
+  ];
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
