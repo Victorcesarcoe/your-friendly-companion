@@ -326,7 +326,7 @@ function HomePage() {
           variants={revealVariants}
           className="text-center mb-16"
         >
-          <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Galeria</h3>
+          <h3 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight text-3d text-3d-hover cursor-default">Galeria</h3>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Confira alguns de nossos trabalhos e o ambiente exclusivo da Sá Ferreira.
           </p>
