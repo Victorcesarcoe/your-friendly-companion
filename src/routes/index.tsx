@@ -156,9 +156,9 @@ function HomePage() {
               hidden: revealVariants.hidden,
               visible: { 
                 ...revealVariants.visible, 
-                transition: { ...revealVariants.visible.transition, delay: 0.2 } 
+                transition: { duration: 0.8, ease: "easeOut", delay: 0.2 } 
               }
-            } as const}
+            }}
           >
             <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Mais que uma barbearia. Seu momento.</h3>
             <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
