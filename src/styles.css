@@ -50,6 +50,10 @@
     0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
+@utility perspective-1000 {
+  perspective: 1000px;
+}
+
 :root {
   --radius: 0.5rem;
   /* Palette: Black Deep, Graphite, Dark Gray, White, Discrete Gold */
