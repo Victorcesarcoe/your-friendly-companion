@@ -66,8 +66,14 @@ function HomePage() {
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Mensagem enviada com sucesso! Entraremos em contato em breve.");
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    const message = `Olá! Meu nome é ${formData.name}. Gostaria de agendar um horário.\n\nContato: ${formData.phone}\nEmail: ${formData.email}\nSolicitação: ${formData.message}`;
+    const whatsappUrl = `https://wa.me/5521970378593?text=${encodeURIComponent(message)}`;
+    
+    toast.success("Redirecionando para o WhatsApp...");
+    setTimeout(() => {
+      window.open(whatsappUrl, '_blank');
+      setFormData({ name: "", email: "", phone: "", message: "" });
+    }, 1000);
   };
 
   return (
