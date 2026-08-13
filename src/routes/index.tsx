@@ -329,14 +329,14 @@ function HomePage() {
                   className="p-8 md:p-12 rounded-2xl border border-border/50 bg-background/50 flex flex-col items-center text-center shadow-xl"
                 >
                   <div className="flex gap-1 text-primary mb-6">
-                    {Array.from({ length: reviews[currentReview].rating }).map((_, idx) => (
+                    {Array.from({ length: reviews[currentReview]?.rating || 0 }).map((_, idx) => (
                       <Star key={idx} fill="currentColor" size={24} />
                     ))}
                   </div>
                   <p className="text-xl md:text-2xl text-muted-foreground italic mb-8 leading-relaxed">
-                    "{reviews[currentReview].text}"
+                    "{reviews[currentReview]?.text || ""}"
                   </p>
-                  <p className="font-bold text-lg text-primary">— {reviews[currentReview].name}</p>
+                  <p className="font-bold text-lg text-primary">— {reviews[currentReview]?.name || ""}</p>
                 </motion.div>
               </AnimatePresence>
               
