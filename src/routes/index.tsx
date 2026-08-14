@@ -6,6 +6,22 @@ import { toast } from "sonner";
 import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    title: "Barbearia Sá Ferreira | Barber Shop Premium em Copacabana",
+    meta: [
+      { 
+        name: "description", 
+        content: "Barbearia Sá Ferreira em Copacabana. Cortes modernos, barba terapia e ambiente exclusivo. Agende seu horário na melhor barbearia do Rio de Janeiro." 
+      },
+      { property: "og:title", content: "Barbearia Sá Ferreira | Barber Shop Premium" },
+      { 
+        property: "og:description", 
+        content: "Descubra a experiência premium da Barbearia Sá Ferreira em Copacabana. Estilo, precisão e cuidado." 
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: HomePage,
 });
 
