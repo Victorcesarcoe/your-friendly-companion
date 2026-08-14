@@ -6,6 +6,22 @@ import { toast } from "sonner";
 import heroVideoAsset from "@/assets/hero-video.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    title: "Barbearia Sá Ferreira | Barber Shop Premium em Copacabana",
+    meta: [
+      { 
+        name: "description", 
+        content: "Barbearia Sá Ferreira em Copacabana. Cortes modernos, barba terapia e ambiente exclusivo. Agende seu horário na melhor barbearia do Rio de Janeiro." 
+      },
+      { property: "og:title", content: "Barbearia Sá Ferreira | Barber Shop Premium" },
+      { 
+        property: "og:description", 
+        content: "Descubra a experiência premium da Barbearia Sá Ferreira em Copacabana. Estilo, precisão e cuidado." 
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: HomePage,
 });
 
@@ -653,7 +669,7 @@ function HomePage() {
       <a
         href="https://wa.me/5521970378593?text=Olá! Gostaria de agendar um horário na Barbearia Sá Ferreira."
         onClick={() => trackConversion("Floating WhatsApp")}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-full bg-[#25D366] px-6 py-4 text-white shadow-xl hover:scale-110 transition-all animate-pulse"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-full bg-[#25D366] px-6 py-4 text-white shadow-xl hover:scale-110 active:scale-95 transition-all duration-300"
       >
         <span className="hidden md:block font-bold">Agende seu horário</span>
       </a>
