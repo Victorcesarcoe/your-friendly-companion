@@ -135,3 +135,15 @@
     font-weight: 700;
   }
 }
+
+/* Hide Lovable badge */
+.lovable-badge, 
+#lovable-badge,
+[class*="lovable-badge"],
+[id*="lovable-badge"],
+a[href*="lovable.dev"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
